@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "label": "파일경로",
+      "type": "textfield",
+      "id": "Field_06sdhkc",
+      "key": "filePath",
+      "validate": {
+        "required": true
+      },
+      "properties": {}
+    }
+  ],
+  "type": "default",
+  "id": "Form_1d8cnah",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.0.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.17.0",
+  "schemaVersion": 4
+}

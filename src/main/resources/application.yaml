@@ -13,4 +13,4 @@ camunda.bpm.admin-user:
   id: demo
   password: demo
 
-server.port: 8080
+server.port: 8070
