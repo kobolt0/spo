@@ -16,12 +16,12 @@ public class FileMetaProducer {
     private JmsTemplate jmsTemplate;
 
     
-   public void sendTopicMsg(String topicStr, String email, String msg) {
+   public void sendTopicMsg(String topicStr, String size, String path) {
         jmsTemplate.setPubSubDomain(false);
-        jmsTemplate.convertAndSend(topicStr, new FileMeta(email, msg));
-        LOGGER.info("email : "+email);
-        LOGGER.info("message : "+msg);
-        LOGGER.info("Sending an topic email message.");
+        jmsTemplate.convertAndSend(topicStr, new FileMeta(size, path));
+        LOGGER.info("email : "+size);
+        LOGGER.info("message : "+path);
+        LOGGER.info("Sending an message.");
         
     }
 }
