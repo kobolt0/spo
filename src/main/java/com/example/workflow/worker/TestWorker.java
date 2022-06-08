@@ -20,8 +20,15 @@ public class TestWorker implements JavaDelegate {
 
 	public void execute(DelegateExecution execution) {
 
-		StringValue val1 = execution.getVariableTyped("val1");
-		LOGGER.info("\n\n test  val1 " + val1.getValue() + "\n\n");
+		IntegerValue val1 = execution.getVariableTyped("val1");
+		
+		LOGGER.info("\\n\\n##  #################################");
+		LOGGER.info("##  execution.getBpmnModelElementInstance().getName(): " + execution.getBpmnModelElementInstance().getName());
+		LOGGER.info("##  vals " + execution.getVariables().toString());
+		LOGGER.info("##  getActivityInstanceId: " + execution.getActivityInstanceId());
+		LOGGER.info("##  getCurrentActivityId: " + execution.getCurrentActivityId());
+		LOGGER.info("##  getId: " + execution.getId());
+		
 		
 	}
 

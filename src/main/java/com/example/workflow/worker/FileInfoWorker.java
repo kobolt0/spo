@@ -1,5 +1,7 @@
 package com.example.workflow.worker;
 
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -20,19 +22,39 @@ public class FileInfoWorker implements JavaDelegate {
 
 	public void execute(DelegateExecution execution) {
 
-		StringValue val1 = execution.getVariableTyped("val1");
-		String str = val1.getValue();
-		LOGGER.info("\n\n  ... Now val1 " + val1.getValue() + "\n\n");
-		fileMetaProduser.sendTopicMsg("File", "seze", "tiem");
-
-		try {
-			Thread.sleep(7000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		LOGGER.info("\n\n  val1 " + val1.getValue() + "\n\n");
 		
+		Set<String> valNames = execution.getVariableNames();
+		
+		IntegerValue val1 = execution.getVariableTyped("val1");
+		IntegerValue val2 = execution.getVariableTyped("val2"); 
+		
+
+		
+		LOGGER.info("\n\n##  #################################");
+		LOGGER.info("##  execution.getBpmnModelElementInstance().getName(): " + execution.getBpmnModelElementInstance().getName());
+		LOGGER.info("##  val1 " + val1.getValue());
+		LOGGER.info("##  val2 " + val2.getValue());
+		LOGGER.info("##  getActivityInstanceId: " + execution.getActivityInstanceId());
+		LOGGER.info("##  getCurrentActivityId: " + execution.getCurrentActivityId());
+		LOGGER.info("##  getId: " + execution.getId());
+		
+		fileMetaProduser.sendTopicMsg("File", "seze", "tiem");
+		
+		for (int i = 0; i < val1.getValue(); i++) {
+			for (int j = 0; j < val2.getValue(); j++) {
+				
+			}
+			LOGGER.info("sleep ...  " + i);
+		}
+//		try {
+//			LOGGER.info("\n\n  sleep ...  " + val1.getValue() + "mil \n\n");
+//			Thread.sleep(val1.getValue()); // 대기
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		LOGGER.info("\n\n  ####################################\n\n");
+
 	}
 
 }
