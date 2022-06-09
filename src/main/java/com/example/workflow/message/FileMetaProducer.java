@@ -12,16 +12,15 @@ import com.example.workflow.worker.FileInfoWorker;
 public class FileMetaProducer {
 
 	private final Logger LOGGER = Logger.getLogger(FileInfoWorker.class.getName());
-    @Autowired
-    private JmsTemplate jmsTemplate;
+	@Autowired
+	private JmsTemplate jmsTemplate;
 
-    
-   public void sendTopicMsg(String topicStr, String size, String path) {
-        jmsTemplate.setPubSubDomain(false);
-        jmsTemplate.convertAndSend(topicStr, new FileMeta(size, path));
-        LOGGER.info("email : "+size);
-        LOGGER.info("message : "+path);
-        LOGGER.info("Sending an message.");
-        
-    }
+	public void sendMsg(String topicStr, String taskId, String fileId) {
+		jmsTemplate.setPubSubDomain(false);
+		
+		TaskMsg taskMsg = new TaskMsg(taskId, fileId);
+		jmsTemplate.convertAndSend(topicStr, taskMsg);
+		
+		LOGGER.info("Sending message." + taskMsg);
+	}
 }
